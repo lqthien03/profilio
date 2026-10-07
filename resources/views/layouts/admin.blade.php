@@ -14,62 +14,47 @@
 
 <body class="min-h-screen bg-zinc-50 dark:bg-zinc-950">
 
-    <flux:sidebar>
-        <flux:sidebar.header>
-            <flux:sidebar.brand href="{{ route('admin.dashboard') }}" name="Portfolio CMS" />
-        </flux:sidebar.header>
+    <flux:sidebar.nav>
 
-        <flux:sidebar.nav>
-            <flux:sidebar.item icon="home" href="{{ route('admin.dashboard') }}"
-                :current="request()->routeIs('admin.dashboard')">
-                Dashboard
-            </flux:sidebar.item>
+        {{-- Dashboard --}}
+        <flux:sidebar.item icon="home" href="{{ route('admin.dashboard') }}"
+            :current="request()->routeIs('admin.dashboard')">
+            Dashboard
+        </flux:sidebar.item>
 
-            <flux:sidebar.item icon="folder" href="{{ route('admin.projects.index') }}"
-                :current="request()->routeIs('admin.projects.*')">
-                Projects
-            </flux:sidebar.item>
 
-            <flux:sidebar.item icon="briefcase" href="#">
-                Experience
-            </flux:sidebar.item>
+        {{-- Projects --}}
+        <flux:sidebar.item icon="folder" href="{{ route('admin.projects.index') }}"
+            :current="request()->routeIs('admin.projects.*')">
+            Projects
+        </flux:sidebar.item>
 
-            <flux:sidebar.item icon="code-bracket" href="#">
-                Skills
-            </flux:sidebar.item>
 
-            <flux:sidebar.item icon="academic-cap" href="#">
-                Certificates
-            </flux:sidebar.item>
+        {{-- Experiences --}}
+        <flux:sidebar.item icon="briefcase" href="{{ route('admin.experiences.index') }}"
+            :current="request()->routeIs('admin.experiences.*')">
+            Experiences
+        </flux:sidebar.item>
 
-            <flux:sidebar.item icon="user" href="#">
-                Profile
-            </flux:sidebar.item>
-        </flux:sidebar.nav>
 
-        <flux:spacer />
+        {{-- Skills --}}
+        <flux:sidebar.item icon="code-bracket" href="#">
+            Skills
+        </flux:sidebar.item>
 
-        <flux:dropdown position="top" align="start">
-            <flux:profile :name="auth()->user()->name" :initials="strtoupper(substr(auth()->user()->name, 0, 1))"
-                icon-trailing="chevron-up-down" />
 
-            <flux:menu>
-                <flux:menu.item icon="user">
-                    Profile
-                </flux:menu.item>
+        {{-- Education --}}
+        <flux:sidebar.item icon="academic-cap" href="#">
+            Education
+        </flux:sidebar.item>
 
-                <flux:menu.separator />
 
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+        {{-- Profile --}}
+        <flux:sidebar.item icon="user" href="#">
+            Profile
+        </flux:sidebar.item>
 
-                    <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle">
-                        Logout
-                    </flux:menu.item>
-                </form>
-            </flux:menu>
-        </flux:dropdown>
-    </flux:sidebar>
+    </flux:sidebar.nav>
 
     <flux:main>
         {{ $slot }}

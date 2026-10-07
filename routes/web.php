@@ -30,3 +30,10 @@ Route::livewire('/admin/projects/{project}/edit', 'admin.projects.edit')
 Route::livewire('/admin/experiences', 'admin.experiences.index')
     ->middleware('auth')
     ->name('admin.experiences.index');
+
+Route::livewire('/admin/experiences/create', 'admin.experiences.create')
+    ->middleware('auth')
+    ->name('admin.experiences.create');
+Route::livewire('/admin/experiences/{experience}/edit', 'admin.experiences.edit')
+    ->middleware('auth')
+    ->name('admin.experiences.edit');

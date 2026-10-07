@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Experience;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -14,6 +15,18 @@ new
 
     public function updatedSearch(): void
     {
+        $this->resetPage();
+    }
+
+    public function delete(Experience $experience): void
+    {
+        $experience->delete();
+
+        session()->flash(
+            'success',
+            'Experience deleted successfully.'
+        );
+
         $this->resetPage();
     }
 
@@ -52,6 +65,10 @@ new
                 Manage your professional experience.
             </flux:text>
         </div>
+
+        <flux:button href="{{ route('admin.experiences.create') }}" variant="primary" icon="plus">
+            New Experience
+        </flux:button>
 
 
 
@@ -221,13 +238,20 @@ new
 
                                 <div class="flex justify-end gap-2">
 
+                                    <div class="flex justify-end gap-2">
 
+                                        <flux:button href="{{ route('admin.experiences.edit', $experience) }}"
+                                            variant="ghost" size="sm" icon="pencil">
+                                            Edit
+                                        </flux:button>
 
-                                    {{-- <flux:button type="button" variant="danger" size="sm" icon="trash"
-                                        wire:click="delete({{ $experience->id }})"
-                                        wire:confirm="Are you sure you want to delete this experience?">
-                                        Delete
-                                    </flux:button> --}}
+                                        <flux:button wire:click="delete({{ $experience->id }})"
+                                            wire:confirm="Are you sure you want to delete this experience?" variant="danger"
+                                            size="sm" icon="trash">
+                                            Delete
+                                        </flux:button>
+
+                                    </div>
 
                                 </div>
 
