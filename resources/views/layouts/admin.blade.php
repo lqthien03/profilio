@@ -57,7 +57,22 @@
     </flux:sidebar.nav>
 
     <flux:main>
+
+        {{-- Flash Messages --}}
+        @if (session()->has('success'))
+            <flux:callout icon="check-circle" variant="success" class="mb-6">
+                {{ session('success') }}
+            </flux:callout>
+        @endif
+
+        @if (session()->has('error'))
+            <flux:callout icon="x-circle" variant="danger" class="mb-6">
+                {{ session('error') }}
+            </flux:callout>
+        @endif
+
         {{ $slot }}
+
     </flux:main>
 
     @fluxScripts

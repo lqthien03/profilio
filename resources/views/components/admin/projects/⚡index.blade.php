@@ -60,7 +60,7 @@ new class extends Component {
 
         session()->flash('success', 'Project deleted successfully.');
 
-        $this->resetPage();
+        $this->redirectRoute('admin.projects.index');
     }
 };
 ?>

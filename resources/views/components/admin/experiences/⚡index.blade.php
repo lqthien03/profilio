@@ -27,7 +27,7 @@ new
             'Experience deleted successfully.'
         );
 
-        $this->resetPage();
+        $this->redirectRoute('admin.experiences.index');
     }
 
     public function getExperiencesProperty()
