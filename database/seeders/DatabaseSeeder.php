@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             ProjectSeeder::class,
             ExperienceSeeder::class,
+            SkillSeeder::class,
         ]);
 
         User::factory()->create([

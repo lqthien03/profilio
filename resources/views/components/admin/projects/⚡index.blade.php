@@ -2,10 +2,13 @@
 
 use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-new class extends Component {
+new
+    #[Layout('layouts.admin')]
+    class extends Component {
     use WithPagination;
 
     public string $search = '';

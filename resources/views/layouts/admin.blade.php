@@ -59,16 +59,45 @@
     <flux:main>
 
         {{-- Flash Messages --}}
-        @if (session()->has('success'))
-            <flux:callout icon="check-circle" variant="success" class="mb-6">
-                {{ session('success') }}
-            </flux:callout>
-        @endif
+        @if (session()->has('success') || session()->has('error'))
 
-        @if (session()->has('error'))
-            <flux:callout icon="x-circle" variant="danger" class="mb-6">
-                {{ session('error') }}
-            </flux:callout>
+            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" x-transition
+                class="mb-6">
+
+                @if (session()->has('success'))
+
+                    <flux:callout icon="check-circle" variant="success" class="relative">
+                        <div class="flex items-center justify-between gap-4">
+
+                            <flux:text>
+                                {{ session('success') }}
+                            </flux:text>
+
+                            <flux:button variant="ghost" size="sm" icon="x-mark" square aria-label="Close"
+                                @click="show = false" />
+
+                        </div>
+                    </flux:callout>
+
+                @elseif (session()->has('error'))
+
+                    <flux:callout icon="x-circle" variant="danger" class="relative">
+                        <div class="flex items-center justify-between gap-4">
+
+                            <flux:text>
+                                {{ session('error') }}
+                            </flux:text>
+
+                            <flux:button variant="ghost" size="sm" icon="x-mark" square aria-label="Close"
+                                @click="show = false" />
+
+                        </div>
+                    </flux:callout>
+
+                @endif
+
+            </div>
+
         @endif
 
         {{ $slot }}
