@@ -22,11 +22,12 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             ExperienceSeeder::class,
             SkillSeeder::class,
+            EducationSeeder::class,
         ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 }

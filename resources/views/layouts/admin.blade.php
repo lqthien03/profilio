@@ -38,13 +38,15 @@
 
 
         {{-- Skills --}}
-        <flux:sidebar.item icon="code-bracket" href="#">
+        <flux:sidebar.item icon="code-bracket" href="{{ route('admin.skills.index') }}"
+            :current="request()->routeIs('admin.skills.*')">
             Skills
         </flux:sidebar.item>
 
 
         {{-- Education --}}
-        <flux:sidebar.item icon="academic-cap" href="#">
+        <flux:sidebar.item icon="academic-cap" href="{{ route('admin.education.index') }}"
+            :current="request()->routeIs('admin.education.*')">
             Education
         </flux:sidebar.item>
 
