@@ -52,7 +52,8 @@
 
 
         {{-- Profile --}}
-        <flux:sidebar.item icon="user" href="#">
+        <flux:sidebar.item icon="user" href="{{ route('admin.profile.index') }}"
+            :current="request()->routeIs('admin.profile.index')">
             Profile
         </flux:sidebar.item>
 
